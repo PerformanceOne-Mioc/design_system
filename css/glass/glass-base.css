@@ -1,0 +1,198 @@
+/* ==========================================================================
+   Glass base — ambient blob layer + scene foundation
+   Always import glass-tokens.css before this file
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Scene root — required wrapper for blob positioning
+   -------------------------------------------------------------------------- */
+.glass-scene {
+  position: relative;
+  background: var(--color-canvas);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* --------------------------------------------------------------------------
+   Ambient blob layer
+   Fixed or absolute blobs that create the organic light atmosphere
+   -------------------------------------------------------------------------- */
+.blob-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Inside a bounded container (non-fixed) */
+.blob-layer-abs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Base blob shape
+   -------------------------------------------------------------------------- */
+.blob {
+  position: absolute;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  filter: var(--blur-blob, blur(90px));
+  opacity: 0.55;
+  will-change: transform;
+  animation-timing-function: var(--ease-in-out);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* --------------------------------------------------------------------------
+   Blob palette stops
+   -------------------------------------------------------------------------- */
+.blob-purple {
+  background: radial-gradient(
+    ellipse at 40% 40%,
+    var(--glass-purple) 0%,
+    oklch(35% .23 285 / 0) 70%
+  );
+}
+
+.blob-mauve {
+  background: radial-gradient(
+    ellipse at 60% 50%,
+    var(--glass-mauve) 0%,
+    oklch(54% .14 284 / 0) 70%
+  );
+}
+
+.blob-peach {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    var(--glass-peach) 0%,
+    oklch(73% .11 48 / 0) 70%
+  );
+}
+
+.blob-orange {
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    var(--glass-orange) 0%,
+    oklch(58% .25 33 / 0) 70%
+  );
+}
+
+.blob-sand {
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    var(--glass-sand) 0%,
+    oklch(83% .07 54 / 0) 70%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Canonical 4-blob layout (matching fluid-glass.html)
+   Override position/size per context
+   -------------------------------------------------------------------------- */
+.blob-a {
+  width: 55vw;
+  height: 55vw;
+  max-width: 800px;
+  max-height: 800px;
+  top: -20%;
+  left: -15%;
+  animation-name: blob-drift-a;
+  animation-duration: 22000ms;
+}
+
+.blob-b {
+  width: 50vw;
+  height: 50vw;
+  max-width: 700px;
+  max-height: 700px;
+  top: -10%;
+  right: -15%;
+  animation-name: blob-drift-b;
+  animation-duration: 26000ms;
+}
+
+.blob-c {
+  width: 45vw;
+  height: 45vw;
+  max-width: 640px;
+  max-height: 640px;
+  bottom: -20%;
+  left: 20%;
+  animation-name: blob-drift-c;
+  animation-duration: 20000ms;
+}
+
+.blob-d {
+  width: 40vw;
+  height: 40vw;
+  max-width: 580px;
+  max-height: 580px;
+  bottom: -15%;
+  right: -10%;
+  animation-name: blob-drift-d;
+  animation-duration: 24000ms;
+}
+
+/* --------------------------------------------------------------------------
+   Blob drift keyframes — gentle, organic, non-linear paths
+   -------------------------------------------------------------------------- */
+@keyframes blob-drift-a {
+  0%   { transform: translate(0,   0)   scale(1)    rotate(0deg); }
+  33%  { transform: translate(4%,  3%)  scale(1.04) rotate(4deg); }
+  66%  { transform: translate(-3%, 5%)  scale(0.97) rotate(-3deg); }
+  100% { transform: translate(5%,  -2%) scale(1.02) rotate(6deg); }
+}
+
+@keyframes blob-drift-b {
+  0%   { transform: translate(0,    0)   scale(1)    rotate(0deg); }
+  33%  { transform: translate(-5%,  4%)  scale(1.05) rotate(-5deg); }
+  66%  { transform: translate(3%,  -3%)  scale(0.96) rotate(4deg); }
+  100% { transform: translate(-4%,  6%)  scale(1.03) rotate(-7deg); }
+}
+
+@keyframes blob-drift-c {
+  0%   { transform: translate(0,  0)   scale(1)    rotate(0deg); }
+  33%  { transform: translate(3%, -4%) scale(1.03) rotate(3deg); }
+  66%  { transform: translate(-4%, 3%) scale(0.98) rotate(-4deg); }
+  100% { transform: translate(5%,  2%) scale(1.04) rotate(5deg); }
+}
+
+@keyframes blob-drift-d {
+  0%   { transform: translate(0,   0)   scale(1)    rotate(0deg); }
+  33%  { transform: translate(-3%, 5%)  scale(1.04) rotate(-4deg); }
+  66%  { transform: translate(4%, -3%)  scale(0.97) rotate(6deg); }
+  100% { transform: translate(-5%, -2%) scale(1.02) rotate(-5deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Smaller in-card accent blobs
+   -------------------------------------------------------------------------- */
+.blob-in-card {
+  position: absolute;
+  border-radius: 40% 60% 55% 45% / 45% 55% 45% 55%;
+  filter: blur(40px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — keep atmosphere, kill animation
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none !important; }
+  .blob-in-card { animation: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   Glass content layer (sits above blobs)
+   -------------------------------------------------------------------------- */
+.glass-content {
+  position: relative;
+  z-index: 1;
+}

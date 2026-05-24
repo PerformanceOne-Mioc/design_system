@@ -1,0 +1,41 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Shadows tinted toward bg hue (H≈65°). Never pure gray. Never neon outer glows.",
+  "shadow": {
+    "sm": {
+      "$value": "0 2px 8px oklch(18% .015 65 / .07)",
+      "$type": "shadow",
+      "$description": "Subtle lift — nav pills, small glass elements"
+    },
+    "md": {
+      "$value": "0 8px 32px oklch(18% .015 65 / .10), 0 2px 8px oklch(18% .015 65 / .05)",
+      "$type": "shadow",
+      "$description": "Standard card elevation"
+    },
+    "lg": {
+      "$value": "0 24px 64px oklch(18% .015 65 / .13), 0 6px 20px oklch(18% .015 65 / .07)",
+      "$type": "shadow",
+      "$description": "Floating panels, hero cards, hover state elevation"
+    },
+    "accent": {
+      "$value": "0 8px 32px oklch(67% .18 55 / .28)",
+      "$type": "shadow",
+      "$description": "Copper glow — primary button at rest"
+    },
+    "accentStrong": {
+      "$value": "0 12px 40px oklch(67% .18 55 / .38)",
+      "$type": "shadow",
+      "$description": "Copper glow — primary button hover"
+    },
+    "glassTopEdge": {
+      "$value": "inset 0 1px 0 oklch(100% 0 0 / .55)",
+      "$type": "shadow",
+      "$description": "Glass top-edge highlight — simulates physical glass thickness"
+    },
+    "glassTopEdgeStrong": {
+      "$value": "inset 0 1px 0 oklch(100% 0 0 / .58)",
+      "$type": "shadow",
+      "$description": "Stronger glass top-edge for hero cards"
+    }
+  }
+}

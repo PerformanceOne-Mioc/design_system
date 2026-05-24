@@ -1,0 +1,56 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "color": {
+    "light": {
+      "$description": "Core system — light mode (data-theme='light')",
+      "canvas":        { "$value": "oklch(97.5% .007 65)", "$type": "color", "$description": "Page background — amber-tinted off-white" },
+      "surface":       { "$value": "oklch(94%   .009 65)", "$type": "color", "$description": "Card and panel fill" },
+      "elevated":      { "$value": "oklch(91%   .010 65)", "$type": "color", "$description": "Raised components, dropdowns" },
+      "ink":           { "$value": "oklch(16%   .012 65)", "$type": "color", "$description": "Primary text — never pure #000" },
+      "steel":         { "$value": "oklch(40%   .010 65)", "$type": "color", "$description": "Secondary text, labels, metadata" },
+      "smoke":         { "$value": "oklch(60%   .008 65)", "$type": "color", "$description": "Tertiary text, placeholders, disabled" },
+      "whisper":       { "$value": "oklch(82%   .010 65)", "$type": "color", "$description": "Structural borders, dividers (1px)" },
+      "whisperStrong": { "$value": "oklch(70%   .012 65)", "$type": "color", "$description": "Strong borders" },
+      "accent":        { "$value": "oklch(68%   .155 60)", "$type": "color", "$description": "Copper — single CTA accent" },
+      "accentHover":   { "$value": "oklch(63%   .155 60)", "$type": "color", "$description": "Copper hover state" },
+      "accentSubtle":  { "$value": "oklch(93%   .040 60)", "$type": "color", "$description": "Accent-tinted background for callouts" },
+      "accentText":    { "$value": "oklch(15%   .012 65)", "$type": "color", "$description": "Text on accent-fill surfaces" },
+      "focusRing":     { "$value": "oklch(68%   .155 60 / .35)", "$type": "color", "$description": "Focus ring — Copper 35% alpha" },
+      "success":       { "$value": "oklch(52%   .16  145)", "$type": "color", "$description": "Positive delta, success state" },
+      "danger":        { "$value": "oklch(55%   .20   25)", "$type": "color", "$description": "Negative delta, error state" }
+    },
+    "dark": {
+      "$description": "Core system — dark mode (data-theme='dark')",
+      "canvas":        { "$value": "oklch(13%   .010 65)", "$type": "color" },
+      "surface":       { "$value": "oklch(19%   .012 65)", "$type": "color" },
+      "elevated":      { "$value": "oklch(25%   .013 65)", "$type": "color" },
+      "ink":           { "$value": "oklch(93%   .007 65)", "$type": "color" },
+      "steel":         { "$value": "oklch(70%   .008 65)", "$type": "color" },
+      "smoke":         { "$value": "oklch(50%   .007 65)", "$type": "color" },
+      "whisper":       { "$value": "oklch(28%   .013 65)", "$type": "color" },
+      "whisperStrong": { "$value": "oklch(38%   .013 65)", "$type": "color" },
+      "accent":        { "$value": "oklch(74%   .150 60)", "$type": "color", "$description": "Brighter copper for dark bg legibility" },
+      "accentHover":   { "$value": "oklch(79%   .150 60)", "$type": "color" },
+      "accentSubtle":  { "$value": "oklch(22%   .040 60)", "$type": "color" },
+      "accentText":    { "$value": "oklch(13%   .010 65)", "$type": "color" },
+      "focusRing":     { "$value": "oklch(74%   .150 60 / .35)", "$type": "color" }
+    },
+    "glass": {
+      "$description": "Fluid Glass variant — organic sculpture palette (purple → mauve → peach → sand → orange)",
+      "ground":   { "$value": "oklch(95.8%  .003 258)", "$type": "color", "$description": "Scene background — barely-blue cool neutral" },
+      "purple":   { "$value": "oklch(35%    .23  285)", "$type": "color", "$description": "Deep blue-purple — cool shadow cap" },
+      "mauve":    { "$value": "oklch(54%    .14  284)", "$type": "color", "$description": "Dusk mauve — purple-to-peach transition" },
+      "peach":    { "$value": "oklch(73%    .11   48)", "$type": "color", "$description": "Warm peach skin — dominant mid-zone" },
+      "sand":     { "$value": "oklch(83%    .07   54)", "$type": "color", "$description": "Sand catch-light — surface highlight" },
+      "orange":   { "$value": "oklch(58%    .25   33)", "$type": "color", "$description": "Terra cotta — saturated focal point" },
+      "cream":    { "$value": "oklch(90%    .05   58)", "$type": "color", "$description": "Cream — translucent rim/lobe edges" },
+      "accent":   { "$value": "oklch(59%    .23   33)", "$type": "color", "$description": "Glass variant primary CTA" },
+      "accentHover": { "$value": "oklch(54% .23   33)", "$type": "color" },
+      "surfaceFill":       { "$value": "oklch(97.5% .003 260 / .68)", "$type": "color", "$description": "Frosted panel — glass" },
+      "surfaceFillStrong": { "$value": "oklch(96.5% .003 260 / .84)", "$type": "color", "$description": "Frosted panel — glass-strong" },
+      "surfaceFillLight":  { "$value": "oklch(98.5% .002 260 / .42)", "$type": "color", "$description": "Frosted panel — glass-light" },
+      "borderTop":    { "$value": "oklch(100% 0 0 / .58)", "$type": "color", "$description": "Glass inner top-edge highlight" },
+      "borderOuter":  { "$value": "oklch(84%  .004 258 / .40)", "$type": "color", "$description": "Glass outer structural border" }
+    }
+  }
+}

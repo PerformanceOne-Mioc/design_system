@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wider);
+  line-height: var(--leading-ui);
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    transform var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-normal) var(--ease-default),
+    background-color var(--duration-normal) var(--ease-generic),
+    color var(--duration-normal) var(--ease-generic),
+    opacity var(--duration-normal) var(--ease-generic);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Primary — copper fill */
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-accent-text);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  box-shadow: var(--shadow-accent-strong);
+  transform: translateY(-1px);
+}
+
+/* Secondary — ghost */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-accent);
+  box-shadow: inset 0 0 0 1.5px var(--color-accent);
+}
+
+.btn-secondary:hover {
+  background: var(--color-accent-subtle);
+  transform: translateY(-1px);
+}
+
+/* Ghost — surface fill */
+.btn-ghost {
+  background: var(--color-elevated);
+  color: var(--color-steel);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-ghost:hover {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Text button (link-style) */
+.btn-text {
+  background: transparent;
+  color: var(--color-accent);
+  padding-inline: var(--space-2);
+  box-shadow: none;
+}
+
+.btn-text:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Danger */
+.btn-danger {
+  background: var(--color-danger);
+  color: oklch(98% .005 25);
+}
+
+.btn-danger:hover {
+  background: oklch(50% .20 25);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-base);
+}
+
+/* --------------------------------------------------------------------------
+   States
+   -------------------------------------------------------------------------- */
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.btn[aria-busy="true"] {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Loading spinner inside button */
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin var(--duration-slow) var(--ease-linear) infinite;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Icon button
+   -------------------------------------------------------------------------- */
+.btn-icon {
+  padding: var(--space-3);
+  aspect-ratio: 1;
+}
+
+.btn-icon.btn-sm { padding: var(--space-2); }
+.btn-icon.btn-lg { padding: var(--space-4); }
+
+/* --------------------------------------------------------------------------
+   Button group
+   -------------------------------------------------------------------------- */
+.btn-group {
+  display: inline-flex;
+  gap: 1px;
+  background: var(--color-whisper);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+}
+
+.btn-group .btn {
+  border-radius: calc(var(--radius-pill) - 2px);
+  background: transparent;
+  color: var(--color-steel);
+  box-shadow: none;
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-4);
+}
+
+.btn-group .btn:hover {
+  background: var(--color-elevated);
+  color: var(--color-ink);
+  transform: none;
+}
+
+.btn-group .btn[aria-pressed="true"],
+.btn-group .btn.active {
+  background: var(--color-canvas);
+  color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}

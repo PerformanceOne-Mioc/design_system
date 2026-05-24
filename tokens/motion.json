@@ -1,0 +1,34 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "$description": "Motion tokens. Animate transform and opacity only — never layout properties.",
+  "duration": {
+    "fast":    { "$value": "120ms", "$description": "Active/press feedback, micro-interactions" },
+    "normal":  { "$value": "180ms", "$description": "Hover state transitions (color, shadow)" },
+    "medium":  { "$value": "240ms", "$description": "Panel open/close, modal" },
+    "slow":    { "$value": "600ms", "$description": "Page-level section reveal (staggered)" },
+    "progress":{ "$value": "1100ms","$description": "Progress bar fill on scroll-into-view" },
+    "blob":    { "$value": "16000ms–26000ms", "$description": "Ambient blob drift cycle (per blob)" }
+  },
+  "easing": {
+    "default":  { "$value": "cubic-bezier(.16, 1, .3, 1)",  "$description": "Expo-out — heavy deceleration, primary choice" },
+    "ease":     { "$value": "ease",                          "$description": "Generic transitions" },
+    "linear":   { "$value": "linear",                        "$description": "Spinner rotation only" },
+    "easeInOut":{ "$value": "ease-in-out",                   "$description": "Blob drift animations" },
+    "progressFill": { "$value": "cubic-bezier(.16, 1, .3, 1)", "$description": "Progress bar fill" }
+  },
+  "blur": {
+    "glass":       { "$value": "blur(28px) saturate(1.5)",  "$description": "Standard glass card blur" },
+    "glassStrong": { "$value": "blur(40px) saturate(1.6)",  "$description": "Hero card glass blur" },
+    "glassLight":  { "$value": "blur(16px) saturate(1.3)",  "$description": "Light glass overlay blur" },
+    "glassMini":   { "$value": "blur(12px)",                 "$description": "Inputs, small glass surfaces" },
+    "blob":        { "$value": "blur(90px)",                 "$description": "Fixed ambient background blobs" },
+    "blobInCard":  { "$value": "blur(38px)–blur(44px)",      "$description": "In-card accent blobs" }
+  },
+  "rules": [
+    "Animate ONLY transform and opacity",
+    "Never animate width, height, top, left, padding, or margin",
+    "No bounce or elastic easing — real objects decelerate smoothly",
+    "All animations respect @media (prefers-reduced-motion: reduce)",
+    "No particle systems, canvas confetti, or cursor trails"
+  ]
+}

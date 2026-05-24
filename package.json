@@ -1,0 +1,17 @@
+{
+  "name": "design-system-dennis-mioc",
+  "version": "1.0.0",
+  "description": "Production-grade design system for performance marketing work",
+  "private": true,
+  "scripts": {
+    "serve": "npx serve showcase -l 3900",
+    "serve:root": "npx serve . -l 3900"
+  },
+  "keywords": [
+    "design-system",
+    "performance-marketing",
+    "oklch",
+    "css-tokens"
+  ],
+  "author": "Dennis Mioc"
+}

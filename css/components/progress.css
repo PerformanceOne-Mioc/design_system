@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Progress bars
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base progress bar
+   -------------------------------------------------------------------------- */
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.progress-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.progress-label {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-steel);
+}
+
+.progress-value {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--color-elevated);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  width: 0%;
+  transition: width var(--duration-progress) var(--ease-progress);
+  will-change: width;
+}
+
+/* JS animation trigger: add .animate class via IntersectionObserver */
+.progress-fill[data-value] { width: 0%; }
+.progress-fill[data-value].animate { width: attr(data-value); }
+
+/* --------------------------------------------------------------------------
+   Fill colors — core system
+   -------------------------------------------------------------------------- */
+.progress-fill.accent   { background: var(--color-accent); }
+.progress-fill.success  { background: var(--color-success); }
+.progress-fill.danger   { background: var(--color-danger); }
+.progress-fill.neutral  { background: var(--color-smoke); }
+
+/* --------------------------------------------------------------------------
+   Fill colors — glass palette
+   -------------------------------------------------------------------------- */
+.progress-fill.glass-orange { background: var(--glass-orange, oklch(58% .25 33)); }
+.progress-fill.glass-peach  { background: var(--glass-peach,  oklch(73% .11 48)); }
+.progress-fill.glass-mauve  { background: var(--glass-mauve,  oklch(54% .14 284)); }
+.progress-fill.glass-purple { background: var(--glass-purple, oklch(35% .23 285)); }
+
+/* --------------------------------------------------------------------------
+   Sizes
+   -------------------------------------------------------------------------- */
+.progress-sm .progress-track  { height: 4px; }
+.progress-lg .progress-track  { height: 12px; }
+.progress-xl .progress-track  { height: 20px; }
+
+/* --------------------------------------------------------------------------
+   Striped (active upload / indeterminate feel)
+   -------------------------------------------------------------------------- */
+.progress-fill.striped {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 6px,
+    oklch(100% 0 0 / .12) 6px,
+    oklch(100% 0 0 / .12) 12px
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Indeterminate (loading, no known end)
+   -------------------------------------------------------------------------- */
+.progress-fill.indeterminate {
+  width: 40% !important;
+  animation: progress-indeterminate 1.4s var(--ease-in-out) infinite;
+}
+
+@keyframes progress-indeterminate {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* --------------------------------------------------------------------------
+   Stacked progress
+   -------------------------------------------------------------------------- */
+.progress-stacked .progress-track {
+  display: flex;
+  overflow: hidden;
+}
+
+.progress-stacked .progress-fill {
+  transition: width var(--duration-progress) var(--ease-progress);
+  border-radius: 0;
+}
+
+.progress-stacked .progress-fill:first-child { border-radius: var(--radius-pill) 0 0 var(--radius-pill); }
+.progress-stacked .progress-fill:last-child  { border-radius: 0 var(--radius-pill) var(--radius-pill) 0; }
+
+/* --------------------------------------------------------------------------
+   Circular progress (simple CSS ring)
+   -------------------------------------------------------------------------- */
+.progress-ring {
+  display: inline-grid;
+  place-items: center;
+  position: relative;
+}
+
+.progress-ring svg {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: var(--color-elevated);
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-linecap: round;
+  stroke-dasharray: 251.2;
+  stroke-dashoffset: 251.2;
+  transition: stroke-dashoffset var(--duration-progress) var(--ease-progress);
+}
+
+.progress-ring-label {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+}

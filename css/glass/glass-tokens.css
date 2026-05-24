@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Glass variant tokens
+   Scoped under .glass-variant or [data-variant="glass"]
+   ========================================================================== */
+
+.glass-variant,
+[data-variant="glass"] {
+  /* Ground */
+  --color-canvas:   oklch(95.8%  .003 258);
+
+  /* Organic palette — the sculpture gradient */
+  --glass-purple:   oklch(35%    .23  285);  /* deep blue-purple cap */
+  --glass-mauve:    oklch(54%    .14  284);  /* dusk mauve transition */
+  --glass-peach:    oklch(73%    .11   48);  /* warm peach skin */
+  --glass-sand:     oklch(83%    .07   54);  /* sand catch-light */
+  --glass-orange:   oklch(58%    .25   33);  /* terra cotta focal */
+  --glass-cream:    oklch(90%    .05   58);  /* cream rim edges */
+
+  /* Gradient — canonical journey */
+  --glass-gradient: linear-gradient(
+    90deg,
+    oklch(35%  .23  285)   0%,
+    oklch(54%  .14  284)  22%,
+    oklch(73%  .11   48)  50%,
+    oklch(83%  .07   54)  68%,
+    oklch(58%  .25   33) 100%
+  );
+
+  /* Frosted panel fills */
+  --glass-fill:        oklch(97.5%  .003 260 / .68);
+  --glass-fill-strong: oklch(96.5%  .003 260 / .84);
+  --glass-fill-light:  oklch(98.5%  .002 260 / .42);
+
+  /* Borders */
+  --glass-border-top:   oklch(100%  0    0   / .58);
+  --glass-border-outer: oklch(84%   .004 258 / .40);
+
+  /* Text on cool ground */
+  --color-ink:    oklch(18%  .008 260);
+  --color-steel:  oklch(42%  .007 260);
+  --color-smoke:  oklch(60%  .005 260);
+
+  /* Accent — terra cotta */
+  --color-accent:        oklch(59%  .23   33);
+  --color-accent-hover:  oklch(54%  .23   33);
+  --color-accent-subtle: oklch(93%  .06   48);
+  --color-accent-text:   oklch(15%  .008 260);
+  --color-focus-ring:    oklch(59%  .23   33 / .30);
+
+  /* Whisper (structural borders) on cool ground */
+  --color-whisper:        oklch(78%  .005 258);
+  --color-whisper-strong: oklch(65%  .007 258);
+
+  /* Surface fallback for glass components */
+  --color-surface:   var(--glass-fill);
+  --color-elevated:  var(--glass-fill-strong);
+
+  /* Shadows (cooler, subtler on light ground) */
+  --shadow-sm: 0 2px 10px oklch(25% .01 260 / .08);
+  --shadow-md: 0 8px 32px oklch(25% .01 260 / .12), 0 2px 8px oklch(25% .01 260 / .06);
+  --shadow-lg: 0 24px 64px oklch(25% .01 260 / .16), 0 6px 20px oklch(25% .01 260 / .08);
+  --shadow-glass-top:        inset 0 1px 0 oklch(100% 0 0 / .58);
+  --shadow-glass-top-strong: inset 0 1px 0 oklch(100% 0 0 / .72);
+}
