@@ -6,94 +6,92 @@ Production-grade design system for performance marketing work — dashboards, cl
 
 ---
 
-## Two registers, one system
+## One system. Glass-native.
 
-| | Core System | Fluid Glass |
-|---|---|---|
-| **Ground** | Amber-tinted off-white | Barely-blue cool neutral |
-| **Accent** | Copper `oklch(68% .155 60)` | Terra cotta `oklch(59% .23 33)` |
-| **Surface** | Opaque elevated fills | Frosted glass + backdrop-filter |
-| **Atmosphere** | Static, clean, data-dense | Ambient blob drift |
-| **Best for** | Dashboards, reports | Landing pages, presentations |
-| **Preview** | [showcase/index.html](showcase/index.html) | [showcase/fluid-glass.html](showcase/fluid-glass.html) |
+Frosted surfaces, organic colour palette, ambient blob atmosphere. Not a "glass variant" layered on top — this is the system.
+
+| | |
+|---|---|
+| **Ground** | Cool neutral `oklch(95.8% .003 258)` |
+| **Surfaces** | Frosted glass — `backdrop-filter: blur(28–40px)` |
+| **Palette** | Purple → Mauve → Peach → Sand → Orange |
+| **Accent** | Terra cotta `oklch(59% .23 33)` |
+| **Atmosphere** | 4 ambient blobs, 20–26s organic drift |
+| **Showcase** | [showcase/index.html](showcase/index.html) |
 
 ---
 
 ## Showcase
 
-Open `showcase/index.html` for the core system: color palette, typography scale, buttons, cards, KPI metrics, tables, progress bars, forms, and states (skeleton, empty, loading, toast).
+Open `showcase/index.html` — colour palette, typography scale, buttons, KPI cards, table, progress bars, forms, badges, states (skeleton, empty). Full dark mode toggle included.
 
-Open `showcase/fluid-glass.html` for the glass variant: organic sculpture palette, frosted panels, glass navigation, and ambient blob atmosphere.
+**Live:** `npx serve showcase -l 3900` → [http://localhost:3900](http://localhost:3900)
 
 ---
 
 ## Structure
 
 ```
-tokens/          DTCG JSON — colors, typography, spacing, shadows, motion
-css/             CSS Custom Properties + component styles
-  tokens.css     Unified :root + [data-theme] blocks
-  base.css       Reset, font loading, root typography
-  components/    Buttons, cards, forms, badges, progress, table, KPI, states
-  glass/         Glass-variant tokens, blob layer, glass components
-showcase/        Live HTML showcases (self-contained, no build step)
-docs/            Markdown documentation
-DESIGN.md        Canonical spec in Google Stitch format
+css/
+  tokens.css          CSS Custom Properties (:root + [data-theme="dark"])
+  base.css            Reset, font loading, root typography
+  components/         Buttons, cards, forms, badges, progress, table, KPI, states
+  glass/              Glass surface classes + glass-specific component styles
+showcase/
+  index.html          Unified system showcase (standalone, no build step)
+docs/
+  overview.md         Architecture and quick-start
+  colors.md           Colour system deep-dive
+  typography.md       Font pairing rationale and scale
+  components.md       Component reference
+  fluid-glass.md      Glass material architecture
+DESIGN.md             Canonical spec (Google Stitch format)
+.stitch/DESIGN.md     Stitch manage-design-system mirror
+.impeccable.md        Impeccable skill design context
 ```
 
 ---
 
 ## Usage
 
-No build step required. Include CSS files directly:
+No build step. Include CSS files in order:
 
 ```html
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components/buttons.css">
-```
-
-For the glass variant, add after core:
-
-```html
-<link rel="stylesheet" href="css/glass/glass-tokens.css">
 <link rel="stylesheet" href="css/glass/glass-base.css">
 <link rel="stylesheet" href="css/glass/glass-components.css">
 ```
 
----
+Page structure for the glass atmosphere:
 
-## Token format
-
-All tokens use [DTCG (Design Token Community Group)](https://design-tokens.github.io/community-group/) format with `$value`, `$type`, and `$description`. OKLCH throughout.
-
-```json
-{
-  "color": {
-    "light": {
-      "accent": {
-        "$value": "oklch(68% .155 60)",
-        "$type": "color",
-        "$description": "Copper — single CTA accent"
-      }
-    }
-  }
-}
+```html
+<div class="blob-layer" aria-hidden="true">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+  <div class="blob blob-d"></div>
+</div>
+<main class="glass-content">
+  <!-- your content — all cards use .glass or .glass-strong -->
+</main>
 ```
-
----
-
-## Canonical spec
-
-[DESIGN.md](DESIGN.md) is the single source of truth. It follows the Google Stitch `manage-design-system` format and is mirrored at [.stitch/DESIGN.md](.stitch/DESIGN.md) for Stitch skill compatibility.
 
 ---
 
 ## Design principles
 
-1. **OKLCH throughout** — perceptually uniform, neutrals tinted to brand hue
-2. **One accent per view** — copper in core, terra cotta in glass
-3. **Animate only transform + opacity** — never layout properties
-4. **Display font for structure, body font for reading**
-5. **4pt spacing scale** — every gap is a multiple of 4px
-6. **`prefers-reduced-motion` respected everywhere**
+1. **Glass is the default surface** — not an optional layer
+2. **OKLCH throughout** — perceptually uniform, neutrals tinted H≈260°
+3. **One accent per view** — terra cotta only
+4. **Animate only transform + opacity** — never layout properties
+5. **Display font for structure, body font for reading**
+6. **4pt spacing scale** — every gap a multiple of 4px
+7. **`prefers-reduced-motion` respected everywhere**
+
+---
+
+## Canonical spec
+
+[DESIGN.md](DESIGN.md) is the single source of truth.
