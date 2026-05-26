@@ -13,5 +13,8 @@
     "oklch",
     "css-tokens"
   ],
-  "author": "Dennis Mioc"
+  "author": "Dennis Mioc",
+  "devDependencies": {
+    "puppeteer": "^25.0.4"
+  }
 }

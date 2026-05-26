@@ -698,6 +698,77 @@ section { padding-block: var(--space-16); }
 .mt-6 { margin-top: var(--space-6); }
 .mt-8 { margin-top: var(--space-8); }
 
+/* ─────────────────────────────────────────────────────────────────
+   SKIP LINK — keyboard/screen-reader navigation
+───────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute; top: -9999px; left: var(--space-4);
+  z-index: 9999;
+  padding: var(--space-2) var(--space-6);
+  background: var(--accent); color: var(--accent-text);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display); font-size: var(--text-sm);
+  font-weight: var(--weight-medium); letter-spacing: var(--tracking-wider);
+  text-transform: uppercase; text-decoration: none;
+  transition: top var(--duration-fast) ease;
+}
+.skip-link:focus { top: var(--space-4); }
+
+/* ─────────────────────────────────────────────────────────────────
+   HARDENING — overflow, grid, text resilience
+───────────────────────────────────────────────────────────────── */
+
+/* Prevent grid children from overflowing their track */
+.type-row > *, .spacing-row > *, .d-item > *,
+.ban-item > *, .z-layer > *, .hero-kpi,
+.motion-card, .easing-card { min-width: 0; }
+
+/* Table horizontal scroll on narrow viewports */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Card title: single-line truncation for long campaign/report names */
+.card-title {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* Progress label: truncate if label is very long */
+.progress-label {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 60%;
+}
+
+/* KPI value: prevent very large numbers from breaking out */
+.kpi-value { overflow-wrap: break-word; }
+
+/* Brand words: hyphenate long German compound words */
+.brand-word-de { hyphens: auto; overflow-wrap: break-word; }
+
+/* General text hardening */
+.section-sub, .card-body p, .font-rationale,
+.d-text, .ban-item span, .audience-card-desc,
+.motion-use, .easing-use {
+  overflow-wrap: break-word;
+}
+
+/* Form error state */
+.form-group.has-error .form-input,
+.form-group.has-error .form-select {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px oklch(55% .20 25 / .20), inset 0 1px 0 oklch(100% 0 0 / .28);
+}
+.form-error-msg {
+  font-size: var(--text-sm); color: var(--danger);
+  display: none; margin-top: 2px;
+}
+.form-group.has-error .form-error-msg { display: block; }
+
+/* Visually hide but keep accessible */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -708,6 +779,8 @@ section { padding-block: var(--space-16); }
 </style>
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
 
 <div class="blob-layer" aria-hidden="true">
   <div class="blob blob-a"></div>
@@ -734,7 +807,7 @@ section { padding-block: var(--space-16); }
   </div>
 </header>
 
-<main class="page">
+<main class="page" id="main-content">
 <div class="container">
 
 <!-- ── HERO ──────────────────────────────────────────────────────── -->
@@ -786,21 +859,21 @@ section { padding-block: var(--space-16); }
     <div class="brand-word glass-strong">
       <div class="brand-word-blob" style="width:200px;height:200px;background:radial-gradient(ellipse,var(--c-purple),transparent 68%);top:-60px;right:-40px;opacity:.35;"></div>
       <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:var(--weight-medium);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--smoke);position:relative;z-index:1;">01</span>
-      <div class="brand-word-de">Präzise</div>
+      <div class="brand-word-de" lang="de">Präzise</div>
       <div class="brand-word-sub">Machined, not handmade. Every spacing decision, typographic choice, and colour value is intentional. Structure over decoration.</div>
     </div>
     <!-- Datengetrieben -->
     <div class="brand-word glass-strong">
       <div class="brand-word-blob" style="width:200px;height:200px;background:radial-gradient(ellipse,var(--c-peach),transparent 68%);top:-60px;right:-40px;opacity:.35;"></div>
       <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:var(--weight-medium);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--smoke);position:relative;z-index:1;">02</span>
-      <div class="brand-word-de">Datenge&shy;trieben</div>
+      <div class="brand-word-de" lang="de">Datenge&shy;trieben</div>
       <div class="brand-word-sub">Dense information, horizontal economy. KPIs speak louder than headlines. The number is always the most important element.</div>
     </div>
     <!-- Verlässlich -->
     <div class="brand-word glass-strong">
       <div class="brand-word-blob" style="width:200px;height:200px;background:radial-gradient(ellipse,var(--c-orange),transparent 68%);top:-60px;right:-40px;opacity:.35;"></div>
       <span style="font-family:var(--font-display);font-size:var(--text-xs);font-weight:var(--weight-medium);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase;color:var(--smoke);position:relative;z-index:1;">03</span>
-      <div class="brand-word-de">Verlässlich</div>
+      <div class="brand-word-de" lang="de">Verlässlich</div>
       <div class="brand-word-sub">Misread-proof. Trusted at a glance. A client forming a first impression within seconds must trust it immediately.</div>
     </div>
   </div>
@@ -893,7 +966,7 @@ section { padding-block: var(--space-16); }
   <h3 class="sub-heading">System Roles</h3>
   <div class="glass" style="border-radius:var(--radius-xl);overflow:hidden;margin-bottom:var(--space-8);">
     <table class="role-table">
-      <thead><tr><th>Token</th><th>Swatch</th><th>OKLCH</th><th>Role</th></tr></thead>
+      <thead><tr><th scope="col">Token</th><th scope="col">Swatch</th><th scope="col">OKLCH</th><th scope="col">Role</th></tr></thead>
       <tbody>
         <tr><td>--canvas</td><td><span class="color-dot" style="background:var(--canvas);border:1px solid var(--whisper)"></span></td><td>95.8% .003 258</td><td>Page ground — barely-blue neutral</td></tr>
         <tr><td>--glass</td><td><span class="color-dot" style="background:var(--glass);backdrop-filter:blur(4px)"></span></td><td>97.5% .003 260 / .68</td><td>Standard surface</td></tr>
@@ -1084,9 +1157,10 @@ section { padding-block: var(--space-16); }
   <h2 class="section-title">Data — Tables & Progress</h2>
   <p class="section-sub">Tabular numerals. Delta indicators. Glass-panelled data grids. Barlow SC headers at tracking-widest.</p>
 
-  <div class="table-wrap glass mt-6">
-    <table class="table">
-      <thead><tr><th>Campaign</th><th>Platform</th><th>Spend</th><th>ROAS</th><th>Status</th></tr></thead>
+  <div class="table-scroll mt-6">
+  <div class="table-wrap glass">
+    <table class="table" aria-label="Campaign performance overview">
+      <thead><tr><th scope="col">Campaign</th><th scope="col">Platform</th><th scope="col">Spend</th><th scope="col">ROAS</th><th scope="col">Status</th></tr></thead>
       <tbody>
         <tr><td><strong>Summer Launch</strong></td><td>Google Ads</td><td>€4,200</td><td><span class="delta up">↑ 5.1×</span></td><td><span class="badge badge-success">Active</span></td></tr>
         <tr><td><strong>Retargeting Flow</strong></td><td>Meta</td><td>€1,850</td><td><span class="delta up">↑ 4.3×</span></td><td><span class="badge badge-success">Active</span></td></tr>
@@ -1096,14 +1170,27 @@ section { padding-block: var(--space-16); }
       </tbody>
     </table>
   </div>
+  </div>
 
   <div class="glass mt-8" style="border-radius:var(--radius-xl);padding:var(--space-8);">
     <h3 class="card-title" style="margin-bottom:var(--space-6);">Progress Bars — Palette Stop Fills</h3>
     <div class="progress-list" id="progressSection">
-      <div class="progress"><div class="progress-header"><span class="progress-label">Monthly Budget</span><span class="progress-pct">78%</span></div><div class="progress-track"><div class="progress-fill fill-orange" data-target="78"></div></div></div>
-      <div class="progress"><div class="progress-header"><span class="progress-label">Conversion Goal</span><span class="progress-pct">91%</span></div><div class="progress-track"><div class="progress-fill fill-peach" data-target="91"></div></div></div>
-      <div class="progress"><div class="progress-header"><span class="progress-label">Frequency Cap</span><span class="progress-pct">45%</span></div><div class="progress-track"><div class="progress-fill fill-mauve" data-target="45"></div></div></div>
-      <div class="progress"><div class="progress-header"><span class="progress-label">Quality Score</span><span class="progress-pct">62%</span></div><div class="progress-track"><div class="progress-fill fill-purple" data-target="62"></div></div></div>
+      <div class="progress">
+        <div class="progress-header"><span class="progress-label">Monthly Budget</span><span class="progress-pct" aria-hidden="true">78%</span></div>
+        <div class="progress-track" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Monthly Budget: 78%"><div class="progress-fill fill-orange" data-target="78"></div></div>
+      </div>
+      <div class="progress">
+        <div class="progress-header"><span class="progress-label">Conversion Goal</span><span class="progress-pct" aria-hidden="true">91%</span></div>
+        <div class="progress-track" role="progressbar" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100" aria-label="Conversion Goal: 91%"><div class="progress-fill fill-peach" data-target="91"></div></div>
+      </div>
+      <div class="progress">
+        <div class="progress-header"><span class="progress-label">Frequency Cap</span><span class="progress-pct" aria-hidden="true">45%</span></div>
+        <div class="progress-track" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="Frequency Cap: 45%"><div class="progress-fill fill-mauve" data-target="45"></div></div>
+      </div>
+      <div class="progress">
+        <div class="progress-header"><span class="progress-label">Quality Score</span><span class="progress-pct" aria-hidden="true">62%</span></div>
+        <div class="progress-track" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Quality Score: 62%"><div class="progress-fill fill-purple" data-target="62"></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1114,35 +1201,50 @@ section { padding-block: var(--space-16); }
   <h2 class="section-title">Forms</h2>
   <p class="section-sub">Glass-light inputs — frosted backdrop, terra cotta focus ring at 3px. Labels in Barlow SC.</p>
 
-  <div class="glass-strong" style="border-radius:var(--radius-xl);padding:var(--space-8);max-width:640px;">
+  <form id="campaignForm" novalidate class="glass-strong" style="border-radius:var(--radius-xl);padding:var(--space-8);max-width:640px;" aria-label="Create campaign">
     <div style="display:flex;flex-direction:column;gap:var(--space-6);">
       <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Campaign Name</label>
-          <input class="form-input" type="text" placeholder="e.g. Summer Launch 2026">
+        <div class="form-group" id="fg-name">
+          <label class="form-label" for="campaignName">Campaign Name <span aria-hidden="true" style="color:var(--danger)">*</span></label>
+          <input class="form-input" type="text" id="campaignName" name="campaignName"
+            placeholder="e.g. Summer Launch 2026"
+            required maxlength="120" autocomplete="off"
+            aria-required="true" aria-describedby="nameError">
+          <span class="form-error-msg" id="nameError" role="alert">Campaign name is required (max 120 characters)</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Platform</label>
-          <select class="form-select">
-            <option>Google Ads</option><option>Meta</option><option>TikTok</option>
+          <label class="form-label" for="platform">Platform</label>
+          <select class="form-select" id="platform" name="platform" aria-label="Select advertising platform">
+            <option value="">— Select —</option>
+            <option value="google">Google Ads</option>
+            <option value="meta">Meta</option>
+            <option value="tiktok">TikTok</option>
           </select>
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Target URL</label>
-        <input class="form-input" type="url" placeholder="https://example.com/landing">
-        <span class="form-hint">UTM parameters appended automatically</span>
+      <div class="form-group" id="fg-url">
+        <label class="form-label" for="targetUrl">Target URL <span aria-hidden="true" style="color:var(--danger)">*</span></label>
+        <input class="form-input" type="url" id="targetUrl" name="targetUrl"
+          placeholder="https://example.com/landing"
+          required maxlength="2048"
+          aria-required="true" aria-describedby="urlHint urlError">
+        <span class="form-hint" id="urlHint">UTM parameters appended automatically</span>
+        <span class="form-error-msg" id="urlError" role="alert">Please enter a valid URL starting with https://</span>
       </div>
-      <div class="form-group">
-        <label class="form-label">Monthly Budget (€)</label>
-        <input class="form-input" type="number" placeholder="2000">
+      <div class="form-group" id="fg-budget">
+        <label class="form-label" for="budget">Monthly Budget (€) <span aria-hidden="true" style="color:var(--danger)">*</span></label>
+        <input class="form-input" type="number" id="budget" name="budget"
+          placeholder="2000" min="1" max="9999999" step="1"
+          required
+          aria-required="true" aria-describedby="budgetError">
+        <span class="form-error-msg" id="budgetError" role="alert">Enter a budget between €1 and €9,999,999</span>
       </div>
       <div style="display:flex;gap:var(--space-3);padding-top:var(--space-2);">
-        <button class="btn btn-primary">Create Campaign</button>
-        <button class="btn btn-glass">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn">Create Campaign</button>
+        <button type="button" class="btn btn-glass" id="cancelBtn">Cancel</button>
       </div>
     </div>
-  </div>
+  </form>
 </section>
 
 <!-- ── MOTION ─────────────────────────────────────────────────────── -->
@@ -1283,7 +1385,7 @@ section { padding-block: var(--space-16); }
   <p class="section-sub">Skeleton loaders and empty states — both within the glass surface language. Empty states always include a next action.</p>
 
   <div class="card-grid">
-    <div class="card glass" style="border-radius:var(--radius-xl);">
+    <div class="card glass" style="border-radius:var(--radius-xl);" aria-busy="true" aria-label="Loading campaign data">
       <div class="card-body" style="display:flex;flex-direction:column;gap:var(--space-4);">
         <div class="sk-header">
           <div class="skeleton sk-avatar"></div>
@@ -1300,7 +1402,7 @@ section { padding-block: var(--space-16); }
         <div class="skeleton sk-btn"></div>
       </div>
     </div>
-    <div class="card glass" style="border-radius:var(--radius-xl);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--space-12) var(--space-8);text-align:center;gap:var(--space-4);min-height:280px;">
+    <div class="card glass" role="status" style="border-radius:var(--radius-xl);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--space-12) var(--space-8);text-align:center;gap:var(--space-4);min-height:280px;">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--smoke);opacity:.6" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div>
         <p style="font-family:var(--font-display);font-size:var(--text-xl);font-weight:var(--weight-semibold);color:var(--ink);margin-bottom:var(--space-2);">No campaigns yet</p>
@@ -1386,16 +1488,34 @@ section { padding-block: var(--space-16); }
 </main>
 
 <script>
-// Theme toggle
+/* ── Theme: respect system preference on first load ──────────── */
 const toggle = document.getElementById('themeToggle');
 const html   = document.documentElement;
+
+(function initTheme() {
+  const stored = localStorage.getItem('ds-theme');
+  const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const dark = stored ? stored === 'dark' : sysDark;
+  html.dataset.theme = dark ? 'dark' : 'light';
+  toggle.textContent = dark ? '☾ Dark' : '☀ Light';
+})();
+
 toggle.addEventListener('click', () => {
   const dark = html.dataset.theme === 'dark';
   html.dataset.theme = dark ? 'light' : 'dark';
   toggle.textContent = dark ? '☀ Light' : '☾ Dark';
+  localStorage.setItem('ds-theme', dark ? 'light' : 'dark');
 });
 
-// Progress bars + hero bars — animate on scroll
+// Keep in sync with OS changes while page is open
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if (!localStorage.getItem('ds-theme')) {
+    html.dataset.theme = e.matches ? 'dark' : 'light';
+    toggle.textContent = e.matches ? '☾ Dark' : '☀ Light';
+  }
+});
+
+/* ── Progress bars + hero bars — animate on scroll ───────────── */
 const progObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -1407,7 +1527,7 @@ const progObs = new IntersectionObserver(entries => {
 }, { threshold: 0.25 });
 document.querySelectorAll('#progressSection, .hero-panel').forEach(el => progObs.observe(el));
 
-// Nav active on scroll
+/* ── Nav active on scroll ─────────────────────────────────────── */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
 const secObs = new IntersectionObserver(entries => {
@@ -1418,6 +1538,67 @@ const secObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.3 });
 sections.forEach(s => secObs.observe(s));
+
+/* ── Form validation ──────────────────────────────────────────── */
+const form       = document.getElementById('campaignForm');
+const submitBtn  = document.getElementById('submitBtn');
+const cancelBtn  = document.getElementById('cancelBtn');
+
+function validateField(input, groupId, errorId) {
+  const group = document.getElementById(groupId);
+  const error = document.getElementById(errorId);
+  if (!group || !error) return true;
+  const valid = input.checkValidity();
+  group.classList.toggle('has-error', !valid);
+  error.style.display = valid ? '' : 'block';
+  return valid;
+}
+
+if (form) {
+  // Live validation on blur (don't interrupt typing)
+  form.querySelectorAll('input[required]').forEach(input => {
+    input.addEventListener('blur', () => {
+      const groupId = 'fg-' + (input.id === 'campaignName' ? 'name' : input.id === 'targetUrl' ? 'url' : 'budget');
+      const errorId = input.id === 'campaignName' ? 'nameError' : input.id === 'targetUrl' ? 'urlError' : 'budgetError';
+      validateField(input, groupId, errorId);
+    });
+    // Clear error once user starts fixing
+    input.addEventListener('input', () => {
+      const group = input.closest('.form-group');
+      if (group && group.classList.contains('has-error') && input.checkValidity()) {
+        group.classList.remove('has-error');
+      }
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+    valid = validateField(form.querySelector('#campaignName'), 'fg-name', 'nameError') && valid;
+    valid = validateField(form.querySelector('#targetUrl'),    'fg-url',  'urlError')  && valid;
+    valid = validateField(form.querySelector('#budget'),       'fg-budget','budgetError') && valid;
+    if (!valid) {
+      // Focus the first field with an error
+      const firstError = form.querySelector('.form-group.has-error input, .form-group.has-error select');
+      if (firstError) firstError.focus();
+      return;
+    }
+    // Optimistic UI: disable submit while "processing"
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating…';
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Create Campaign';
+      form.reset();
+      form.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
+    }, 1200);
+  });
+
+  cancelBtn.addEventListener('click', () => {
+    form.reset();
+    form.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
+  });
+}
 </script>
 </body>
 </html>
