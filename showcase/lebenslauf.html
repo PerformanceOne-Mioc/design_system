@@ -240,11 +240,52 @@ body {
 /* ── Header ── */
 .cv-header {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
   gap: var(--space-8);
-  padding: var(--space-12) var(--space-12) var(--space-8);
+  padding: var(--space-10) var(--space-12) var(--space-8);
   border-bottom: 1px solid var(--glass-border);
+}
+
+/* ── Profile photo ── */
+.cv-photo-wrap {
+  flex-shrink: 0;
+}
+.cv-photo {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  /* Subtle glass ring */
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 0 0 5px color-mix(in oklch, var(--accent) 20%, transparent),
+    var(--shadow-md);
+  filter: grayscale(15%);
+  transition: filter 300ms, box-shadow 300ms;
+}
+.cv-photo:hover {
+  filter: grayscale(0%);
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 0 0 6px color-mix(in oklch, var(--accent) 30%, transparent),
+    var(--shadow-lg);
+}
+
+/* Fallback: initials circle (shown when img fails to load) */
+.cv-photo-fallback {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  background: var(--accent-subtle);
+  box-shadow: 0 0 0 2px var(--accent), 0 0 0 5px color-mix(in oklch, var(--accent) 20%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  letter-spacing: var(--tracking-tight);
+  user-select: none;
 }
 .cv-name {
   font-family: var(--font-display);
@@ -530,7 +571,8 @@ body {
 
 /* ── Responsive ── */
 @media (max-width: 720px) {
-  .cv-header { grid-template-columns: 1fr; }
+  .cv-header { grid-template-columns: 1fr; row-gap: var(--space-6); }
+  .cv-photo-wrap { order: -1; }
   .cv-contact { align-items: flex-start; }
   .cv-body { grid-template-columns: 1fr; }
   .cv-sidebar { border-right: none; border-bottom: 1px solid var(--glass-border); }
@@ -578,6 +620,16 @@ body {
     border-bottom: 1.5pt solid #e8e4e0 !important;
     padding: 0 0 12pt !important;
     margin-bottom: 12pt;
+    grid-template-columns: auto 1fr auto !important;
+  }
+  .cv-photo {
+    width: 72pt !important; height: 72pt !important;
+    box-shadow: 0 0 0 1.5pt #b84a28 !important;
+    filter: grayscale(0%) !important;
+  }
+  .cv-photo-fallback {
+    width: 72pt !important; height: 72pt !important;
+    box-shadow: 0 0 0 1.5pt #b84a28 !important;
   }
 
   .cv-name  { color: #111 !important; font-size: 28pt !important; }
@@ -686,6 +738,20 @@ body {
 
   <!-- ── Header ── -->
   <header class="cv-header">
+
+    <!-- Profile photo -->
+    <div class="cv-photo-wrap">
+      <img
+        class="cv-photo"
+        src="assets/dennis-mioc.jpg"
+        alt="Dennis Mioc — Profilfoto"
+        width="96" height="96"
+        id="cvPhoto"
+        onerror="this.style.display='none'; document.getElementById('cvPhotoFallback').style.display='flex';"
+      >
+      <div class="cv-photo-fallback" id="cvPhotoFallback" style="display:none;" aria-hidden="true">DM</div>
+    </div>
+
     <div>
       <h1 class="cv-name">Dennis Mioc</h1>
       <p class="cv-title">Performance Marketing · Freelancer</p>
